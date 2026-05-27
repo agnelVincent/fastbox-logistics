@@ -30,8 +30,19 @@ for agent in agent_report:
         agent_report[agent]['total_distance'], 2
     )
 
-    agent_report[agent]['effieciency'] = round(
+    agent_report[agent]['efficiency'] = round(
         agent_report[agent]['total_distance'] / agent_report[agent]['packages_delivered'], 2
     )
-    
+
+
+best_agent = min(
+    agent_report,
+    key = lambda agent : agent_report[agent]['efficiency']
+    if agent_report[agent]['packages_delivered'] > 0
+    else float('inf')
+)
+
+agent_report['best_agent'] = best_agent
+
+
 print(agent_report)
