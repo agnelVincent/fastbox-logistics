@@ -2,9 +2,10 @@ import json
 import math
 import csv
 
-
+#Receiving test case from user
 file_name = input("Enter JSON file name: ")
 
+#Using context manager to retrive data
 with open(file_name, 'r') as file:
     data = json.load(file)
 
@@ -23,6 +24,7 @@ agent_report = {
 }
 
 
+#Calculate package delivered and total distance logic
 for package in data['packages']:
     distances = {}
     warehouse_location = data['warehouses'][package['warehouse']]
@@ -41,6 +43,7 @@ for agent in agent_report:
         agent_report[agent]['total_distance'], 2
     )
 
+    #Handling edge case of zero division error if package delivered is 0
     if agent_report[agent]['packages_delivered'] > 0:
         agent_report[agent]['efficiency'] = round(
             agent_report[agent]['total_distance'] /
@@ -80,9 +83,6 @@ with open('top_performer.csv', 'w', newline='') as file:
         agent_report[best_agent]['total_distance'],
         agent_report[best_agent]['efficiency']
     ])
-
-
-
 
 #Saved the agent report to report.json
 with open('report.json', 'w') as file:
