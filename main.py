@@ -37,9 +37,14 @@ for agent in agent_report:
         agent_report[agent]['total_distance'], 2
     )
 
-    agent_report[agent]['efficiency'] = round(
-        agent_report[agent]['total_distance'] / agent_report[agent]['packages_delivered'], 2
-    )
+    if agent_report[agent]['packages_delivered'] > 0:
+        agent_report[agent]['efficiency'] = round(
+            agent_report[agent]['total_distance'] /
+            agent_report[agent]['packages_delivered'],
+            2
+        )
+    else:
+        agent_report[agent]['efficiency'] = 0
 
 #Found the best agent
 best_agent = min(
