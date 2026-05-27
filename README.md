@@ -17,13 +17,14 @@ Here's what's happening behind the scenes:
 - Simulates the delivery route: **Agent → Warehouse → Destination**
 - Tracks total travel distance per agent
 - Computes efficiency metrics and identifies the best-performing agent
+- Exports the top-performing delivery agent into a CSV report for spreadsheet-friendly analysis
 - Writes a clean summary report to `report.json`
 
 ---
 
 ## Project Structure
 
-```
+```text
 FASTBOX-LOGISTICS/
 │
 ├── test_cases/
@@ -34,6 +35,7 @@ FASTBOX-LOGISTICS/
 ├── data.json
 ├── main.py
 ├── report.json
+├── top_performer.csv
 └── README.md
 ```
 
@@ -112,6 +114,24 @@ In this case, A3 wins — fewer deliveries, but an impressively short route.
 
 ---
 
+## CSV Export
+
+As a small bonus feature, the simulator also exports the top-performing delivery agent into a CSV file called:
+
+```text
+top_performer.csv
+```
+
+This makes the output easier to inspect in spreadsheet tools like Excel or Google Sheets.
+
+Example:
+
+```csv
+Agent,Packages Delivered,Total Distance,Efficiency
+A3,1,18.25,18.25
+```
+---
+
 ## Assumptions I Made
 
 The assignment left a few things open-ended, so here's how I filled the gaps:
@@ -139,9 +159,9 @@ The `test_cases/` folder covers a range of scenarios I wanted to make sure the s
 
 ## What I Learned
 
-Honestly, this project was a good exercise in thinking through a system end-to-end. The logistics logic itself isn't complicated, but getting the assignment algorithm right, handling the edge cases cleanly, and keeping the codebase readable — that took more thought than I expected.
+Honestly, this project was a good exercise in thinking through a system end-to-end. The core logistics logic is straightforward on paper, but implementing it cleanly while handling edge cases and keeping the system scalable took more thought than I initially expected.
 
-Key takeaways: JSON parsing, distance-based sorting, simulation design, dictionary management, and being deliberate about edge case handling from the start rather than patching them in later.
+Key takeaways: JSON parsing, distance-based sorting, simulation design, dictionary management, and being deliberate about edge case handling from the start rather than patching them in later. I also explored exporting structured simulation results into CSV format, which added a more practical reporting layer to the project.
 
 ---
 
