@@ -45,4 +45,5 @@ best_agent = min(
 agent_report['best_agent'] = best_agent
 
 
-print(agent_report)
+with open('report.json', 'w') as file:
+    json.dump(agent_report,file, indent=4)
