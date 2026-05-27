@@ -1,5 +1,6 @@
 import json
 import math
+import csv
 
 
 file_name = input("Enter JSON file name: ")
@@ -58,6 +59,29 @@ best_agent = min(
 )
 
 agent_report['best_agent'] = best_agent
+
+#Exporting top performer details to CSV
+with open('top_performer.csv', 'w', newline='') as file:
+
+    writer = csv.writer(file)
+
+    #CSV column headings
+    writer.writerow([
+        'Agent',
+        'Packages Delivered',
+        'Total Distance',
+        'Efficiency'
+    ])
+
+    #Top performer data
+    writer.writerow([
+        best_agent,
+        agent_report[best_agent]['packages_delivered'],
+        agent_report[best_agent]['total_distance'],
+        agent_report[best_agent]['efficiency']
+    ])
+
+
 
 
 #Saved the agent report to report.json
