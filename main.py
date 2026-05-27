@@ -1,7 +1,10 @@
 import json
 import math
 
-with open('data.json', 'r') as file:
+
+file_name = input("Enter JSON file name: ")
+
+with open(file_name, 'r') as file:
     data = json.load(file)
 
 
