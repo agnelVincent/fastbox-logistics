@@ -22,6 +22,14 @@ for package in data['packages']:
         agent_report[nearest_agent]['packages_delivered'] += 1
         agent_report[nearest_agent]['total_distance'] += distances[nearest_agent] + calculate_distance(data['warehouses'][package['warehouse']],package['destination'])
     
-    agent_report[nearest_agent]['efficiency'] = agent_report[nearest_agent]['total_distance'] / agent_report[nearest_agent]['packages_delivered']
+
+for agent in agent_report:
+    agent_report[agent]['total_distance'] = round(
+        agent_report[agent]['total_distance'], 2
+    )
+
+    agent_report[agent]['effieciency'] = round(
+        agent_report[agent]['total_distance'] / agent_report[agent]['packages_delivered'], 2
+    )
     
 print(agent_report)
